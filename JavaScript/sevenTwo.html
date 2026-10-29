@@ -1,0 +1,29 @@
+<!-- Example on nested functions + scope + return value. -->
+ 
+
+<script>
+    function Outer(){
+         var msg = "Message from outer function";
+             function Inner(){
+                var outerMessage = msg;
+                var innerMessage = "Message from inner function";
+                return outerMessage + "<br/>" + innerMessage;
+             }
+             return Inner();
+    } document.write(Outer());
+</script>
+
+
+<!-- Example on Arrow functions are common as short inline callbacks, e.g. with filter() -->
+ <script>
+    var products = [
+        {Name: "TV", Category: "Electronics"},
+        {Name:"Shoe", Category:"Footwear"},
+        {Name:"Mobile", Category:"Electronics"}
+    ]; 
+    var electronics = products.filter(item=> item.Category=="Electronics");  //item represents one object at a time from the products array.
+    for(var item of electronics){
+        document.write(`${item.Name} <br/>`);
+    }
+
+</script>

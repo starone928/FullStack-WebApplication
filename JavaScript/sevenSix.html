@@ -1,0 +1,74 @@
+<!--  Your code demonstrates Inheritance + Polymorphism + Array of Objects.  -->
+<!-- Example — different employee types overriding a shared Print() to add role-specific behavior: -->
+<script>
+  class Employee {
+    FirstName;
+    LastName;
+    Designation;
+    Print() {
+      document.write(`${this.FirstName} ${this.LastName} ${this.Designation} <br/>`);
+    }
+  }
+  class Developer extends Employee {
+    FirstName = "Raj";
+    LastName = "Kumar";
+    Designation = "Developer";
+    Role = "Developer Role : Build, Debug, Text, Deploy <br/>";
+    Print() {
+      super.Print();
+      document.write(this.Role);
+    }
+  }
+  class Admin extends Employee {
+    FirstName = "Kiran";
+    LastName = "Kumar";
+    Designation = "Admin";
+    Role = "Admin Role : Authemtication, Authorization <br/>";
+    Print() {
+      super.Print();
+      document.write(this.Role);
+    }
+  }
+  class Manager extends Employee {
+    FirstName = "Tom";
+    LastName = "Hanks";
+    Designation = "Manager";
+    Role = "Manager Role : Approvals <br>";
+    Print() {
+      super.Print();
+      document.write(this.Role);
+    }
+  }
+
+  let employees = new Array(new Developer(), new Admin(), new Manager());
+  let designation = prompt("Enter Designation");
+  for (var employee of employees) {
+    if (employee.Designation == designation) {
+      employee.Print();
+    }
+  }
+</script>
+
+
+<!-- Your code demonstrates passing the clicked element and event object to a function. -->
+
+
+<script>
+    function InsertClick(obj, e) {                //Creates a function named InsertClick.
+        document.write(`                          //Writes content directly to the webpage.
+      Button Id: ${obj.id} <br>
+      Button Class: ${obj.className} <br>
+      Clicked At X : ${e.clientX} <br>
+      Ctrl Key : ${e.ctrlKey}
+    `);
+    }
+</script>
+<button 
+id="btnInsert" 
+class="btn btn-primary" 
+onclick="InsertClick(this,event)">               //You are passing two arguments:
+Insert
+</button>
+
+
+

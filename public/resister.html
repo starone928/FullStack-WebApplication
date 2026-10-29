@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resister Form</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-grid.css">
+</head>
+
+<body>
+    <h2>Resister User</h2>
+    <form>
+        <dl>
+            <dt>User Name</dt>
+            <dd>
+                <input type="text">
+            </dd>
+            <dt>Password</dt>
+            <dd>
+                <input type="password">
+            </dd>
+            <dt>Age</dt>
+            <dd>
+                <input type="number" min="15" max="25" value="15" step="0.1" name="Age">
+            </dd>
+            <dt>Price</dt>
+            <dd>
+                <input type="range" min="1500" max="2500" value="1500" step="" name="Price">
+            </dd>
+            <dt>Date</dt>
+            <dd>
+                <input type="date" name="date" min="2021-11-05" max="2021-11-22" value="2021-11-08">
+            </dd>
+            <dt>Email</dt>
+            <dd>
+                <input type="email" name="Email">
+            </dd>
+            <dt>Website</dt>
+            <dd>
+                <input type="url" name="Website">
+            </dd>
+            <dt>Upload your resume</dt>
+            <dd>
+                <input type="file" name="resume" accept=".docx|.png" multiple>
+            </dd>
+            <dt>Select Color</dt>
+            <dd>
+                <input type="color" name="color" value="blue">
+            </dd>
+            <dt>Select Gender</dt>
+            <dd>
+                <input type="radio" name="Gender" checked value="Male">Male
+                <input type="radio" name="Gender" value="Female">Female
+            </dd>
+            <dt>Select Courses</dt>
+            <dd>
+                <input type="checkbox" checked name="Courses" value="Oracle">Oracle
+                <input type="checkbox" name="Courses" value="Full Stack">Full Stack
+                <input type="checkbox" checked name="Courses" value=".NET">.NET
+            </dd>
+        </dl>
+        <button>Resister</button>
+    </form>
+</body>
+
+</html>

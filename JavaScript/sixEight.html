@@ -1,0 +1,27 @@
+<!-- Example on for loop -->
+
+<script>
+    function f1() {
+        for (var x = 5; x <= 10; x++){
+            document.write(`${x} <br/>`)
+        }
+    } f1();
+</script>
+
+<!-- Example on recursion -->
+
+<script>
+    function f1(){
+        function fact (n){
+            if(n==0){
+                return 1;
+            }
+            return n * fact(n-1);
+        }
+        document.write(`Factorial of 5 is ${fact(5)}`)
+    
+    }f1();
+</script>
+
+
+

@@ -1,0 +1,143 @@
+<!-- Example :- 1 Object type -->
+
+<script>
+    let product = {
+        "Name": "",                  //string
+        "Price": 0,                //number
+        "Stock": false,            //boolean
+        "Qty": 0,                    //number
+        "Cities": [],                //Array
+        "Rating": {Rate:0, Count:0}, //Object
+        "Total": function () {       //Total is function
+            return this.Qty * this.Price;
+        },
+        "Print": function () {       //Print is function
+            document.write(`Name=${this.Name}<br/>Price=${this.Price}<br/>Stock=${this.Stock}<br/>Quantity=${this.Qty}<br/>Total=${this.Total()}<br/>Shipped To=${this.Cities.toString()}<br/>Rating=${this.Rating.Rate}<br/>Rating From -${this.Rating.Count} People<br/>`);
+
+        }
+    }
+    document.write(`<h2>TV Details</h2>`);
+    product.Name = "Samsung TV";
+    product.Price = "56000.55";
+    product.Qty = 2;
+    product.Stock = true;
+    product.Rating.Rate = 4.5;
+    product.Rating.Count = 300;
+    product.Cities = ["Delhi", "Hyd"];
+    product.Print();
+    document.write(`<h2>Shoe Details</h2>`);
+    product.Name = "Nike Casuals";
+    product.Price = 5000.44;
+    product.Qty = 3;
+    product.Stock = true;
+    product.Rating.Rate = 4.8;
+    product.Rating.Count = 100;
+    product.Cities = ["Mumbai", "Pune", "Ytl"];
+    product.Print();
+</script>
+
+
+
+<!-- Example :- 2 JSON demo -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+    <script>
+        var products = [
+            {Name: "Mobile", Price: 56000.45, Photo:"../public/assets/17 pro.jpg"},
+            {Name: "Electronics", Price: 5600.45, Photo:"../public/assets/Electronics.png"},
+            {Name: "Cloths", Price: 4600.45, Photo:"../public/assets/shirt.webp"},
+            {Name: "Desktop", Price: 34400.44, Photo:"../public/assets/oppo.webp"}
+        ];
+        function bodyLoad(){
+            for(var product of products)
+        {
+            var tr = document.createElement("tr");
+            var tdName = document.createElement("td");
+            var tdPrice = document.createElement("td");
+            var tdPhoto = document.createElement("td");
+
+            tdName.innerHTML = product.Name;
+            tdPrice.innerHTML = product.Price;
+
+            var img = document.createElement("img");
+            img.src = product.Photo;
+            img.width = "100";
+            img.height = "100";
+
+            tdPhoto.appendChild(img);
+
+            tr.appendChild(tdName);
+            tr.appendChild(tdPrice);
+            tr.appendChild(tdPhoto);
+
+            document.querySelector("tbody").appendChild(tr);
+        }
+        }
+    </script>
+</head>
+<body onload="bodyLoad()">
+    <table border="1" width="700">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Preview</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    
+</body>
+</html>
+
+
+
+<!-- Example 3:- Card Style -->
+
+
+<!-- Example 4:- Multi Level Iterations -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Level Iterations</title>
+    <script>
+        var data = [
+            { Category: "Electronics", Products: ["TV", "Mobile"] },
+            { Category: "Footwear", Products: ["Nike Casuals", "Lee Boot"] }
+        ]
+        function bodyLoad() {
+            for (var item of data) {
+                var li = document.createElement("li");
+                li.innerHTML = item.Category;
+                for (var product of item.Products) 
+                {
+                   var ul = document.createElement("ul");
+                   var innerLi = document.createElement("li");
+                   innerLi.innerHTML = product;
+                   ul.appendChild(innerLi);
+                   li.appendChild(ul);
+                   document.querySelector("ol").appendChild(li);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body onload="bodyLoad()">
+    <ol>
+
+    </ol>
+</body>
+
+</html>

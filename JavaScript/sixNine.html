@@ -1,0 +1,162 @@
+<!-- Example on for loop code creates a nested list from the data array. -->
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload() {
+            var data = [                                            //Creates a variable named data containing an array.
+                { Category: "Electronics", Products: ["TV", "Mobile"] }, 
+                { Category: "Footwear", Products: ["Nike Casuals", "Lee Boot"] }
+            ];
+            for (var i = 0; i < data.length; i++) {                    //i = 0 → Electronics    i = 1 → Footwear
+                var olLi = document.createElement("li");               //Creates a new <li> element.
+                olLi.innerHTML = data[i].Category;                     //Puts the category name inside <li>
+                document.querySelector("ol").appendChild(olLi);        //Finds the <ol> and adds the category <li> inside it
+                for (var j = 0; j < data[i].Products.length; j++)          //Loops through the products of the current category.
+                {
+                    var ul = document.createElement("ul");           //Creates a <ul> unordered list.
+                    var ulLi = document.createElement("li");        //Creates a product <li>
+                    ulLi.innerHTML = data[i].Products[j];           //Puts the current product name inside <li>.
+                    ul.appendChild(ulLi);                           //Adds the product <li> inside <ul>
+                    document.querySelector("ol").appendChild(ul);  //This adds <ul> directly inside <ol>.
+                }
+            }
+        }
+    </script>
+</head>
+
+<body onload="bodyload()">
+    <ol>
+
+    </ol>
+</body>
+
+</html>
+
+<!-- Task : validate pin for 3 attempts and block if all 3 found wrong -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Attempt</title>
+    <script>
+        var userdetails = {
+            Pin: '67042'
+        }
+        function SubmitClick(){
+            var pin = document.getElementById("txtPin").value;
+            if(pin==userdetails.Pin){
+                document.write("Verified Successfully..");
+            }
+            var counter = 0;
+            if(pin!==userdetails.Pin){
+                counter++;
+                document.write("Invalid Pin");
+            }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Your PIN [Max 3 attempts]</legend>
+        <input type="text" id="txtPin" size="5"> <button onclick="SubmitClick()">Submit</button>
+    </fieldset>
+</body>
+</html>
+
+
+<!-- Task : Write a program to conver number to words -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number to Text</title>
+    <script>
+        function Convert(){
+            var amount = document.getElementById("txtAmount").value;
+            var hundreds = ['one', 'Two', 'Three', 'Four'];
+            for(var i=0; i<hundreds.length; i++){
+                if(hundreds[i]==amount){
+                    document.getElementById("msg").innerHTML = hundreds[i] + "Hundred";
+                }
+            }
+        }
+    </script>  
+</head>
+<body>
+    <fieldset>
+        <legend>Enter Amount</legend>
+        <input type="text" onkeyup="Convert()" id="txtAmount" size="6">
+        <p>In words : </p>
+    </fieldset>
+</body>
+</html>
+
+
+<!-- Example on Jump Statement (Continue) -->
+
+<script>
+   function f1() {
+      var products = [    //We create an array called products. it stores 4 product objects.
+         { Name: "TV", Category: "Electronics" },  //products[0].Name o/p TV  products[0].Category o/p Electronics
+         { Name: "Nike", Category: "Footwear" },  //index is 1
+         { Name: "Mobile", Category: "Electronics" },  
+         { Name: "Shirt", Category: "Fashion" }    //index is 3
+      ];
+
+      for (var i = 0; i < products.length; i++) {
+         if (products[i].Category == "Electronics"){
+            continue;   //Skip the remaining code for the current iteration and go to the next iteration.
+      }
+      document.write(products[i].Name + "<br/>");
+         }
+            
+   } f1();
+</script>
+
+<!-- products
+   ↓
+┌───────┬────────────────────────────────────┐
+│ Index │ Object                             │
+├───────┼────────────────────────────────────┤
+│  0    │ TV     → Electronics               │
+│  1    │ Nike   → Footwear                  │
+│  2    │ Mobile → Electronics               │
+│  3    │ Shirt  → Fashion                   │
+└───────┴────────────────────────────────────┘ -->
+
+
+Exception Handling Statements
+<script>
+  function f1(){
+    try
+    {
+      var x = 10;
+      var y = -1;
+      var z = x / y;
+      if(y==0) {
+        throw "DivideByZeroError: Can't Divide By Zero <br>";
+      }
+      if(y<0) {
+        throw "NoNegativeValue: You Can't Divide by -ve Number<br>";
+      }
+    }
+    catch(exceptionDetails)
+    {
+      document.write(exceptionDetails);
+    }
+    finally
+    {
+      document.write(`Division=${z}`);
+    }
+  }
+</script>
+

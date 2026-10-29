@@ -1,0 +1,90 @@
+
+
+<!-- https://images-api.nasa.gov/search?q=galaxy  NASA API  -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Image Gallery</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th,
+        td {
+            border: 1px solid gray;
+            padding: 10px;
+            text-align: center;
+        }
+        img {
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+      function bodyLoad() {
+            fetch("https://images-api.nasa.gov/search?q=mars")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (result) {
+                    var items = result.collection.items;
+                    for (var item of items) {
+                        var tr = document.createElement("tr");
+                        // Title
+                        var tdTitle = document.createElement("td");
+                        tdTitle.innerHTML = item.data[0].title;
+                        // Image
+                        var tdImage = document.createElement("td");
+                        if (item.links) {
+                            var img = document.createElement("img");
+                            img.src = item.links[0].href;
+                            img.width = 180;
+                            img.height = 120;
+                            tdImage.appendChild(img);
+                        }
+                        else {
+                            tdImage.innerHTML = "No Image";
+                        }
+                        // Date
+                        var tdDate = document.createElement("td");
+                        tdDate.innerHTML = item.data[0].date_created;
+                        // Description
+                        var tdDesc = document.createElement("td");
+                        tdDesc.innerHTML = item.data[0].description;
+                        tr.appendChild(tdTitle);
+                        tr.appendChild(tdImage);
+                        tr.appendChild(tdDate);
+                        tr.appendChild(tdDesc);
+                        document.querySelector("tbody").appendChild(tr);
+                    }
+                });
+        }
+    </script>
+</head>
+<body onload="bodyLoad()">
+    <h2>NASA Image Gallery</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Image</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+<!-- https://fakestoreapi.com/products -->

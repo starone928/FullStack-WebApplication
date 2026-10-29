@@ -1,0 +1,65 @@
+<script>
+  class Product
+  {
+    Name = "Samsung TV";
+    Price = 56000.66;
+    Stock = true;
+    ShippedTo = ["Delhi", "Hyd"];
+    Rating = {Rate:3.4, Count:500};
+  }
+  let tv = new Product;
+  document.write(`Name=${tv.Name}<br>Price=${tv.Price}<br>Rating=${tv.Rating.Rate}`);
+</script>
+
+
+
+<!-- Example — a setter that enforces an authorization check before updating a property: -->
+
+<script>
+  var username = prompt("Enter User Name");            //These three prompts collect values from the user:
+  var password = prompt("Enter Password");
+  var productname = prompt("Enter Product Name");
+  class Product                                     //You create a class named Product.
+  {
+    _productName;         //The _ is just a naming convention indicating that it is intended to be an internal property.
+    get ProductName()                     //This gets/reads the product name.
+    {
+      return this._productName;
+    }
+    set ProductName(newName)                //The setter receives a value.
+    {          // Authorization check
+      if(username=="john" && password=="john@11")       //Is username "john" AND is password "john@11"
+      {
+        this._productName = newName;     //If both are correct: The product name is stored.
+      } else {
+        document.write("Unauthorized : You are not authorized to set product name");
+      }
+    }
+  }
+  let obj = new Product;           //Creates an object of the Product class.
+  obj.ProductName = productname; 
+  if(obj.ProductName) {
+    document.write(`Product Name : ${obj.ProductName}`);
+  }
+</script>
+
+
+<!-- Example on Methods -->
+
+<script>
+  class Product            //Create a class. Product is a blueprint for creating product objects.
+  {
+    Name = "TV";            //These are properties of every Product object.
+    Price = 56000;
+    Qty = 3;
+    Total(){                               //Total() method
+      return this.Qty * this.Price;       //Calculates the total price.
+    }
+    Print(){
+      document.write(`...`);       //Currently, it only prints ....
+    }
+  }
+  let obj = new Product;
+  obj.Print();           //calls the Print() method.
+</script>
+

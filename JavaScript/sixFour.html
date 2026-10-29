@@ -1,0 +1,162 @@
+<!-- Example EMI Calculator -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        body {
+            background-color: rgb(186, 197, 201);
+        }
+
+        .form-element{
+            width: 100px;
+        }
+    </style>
+    <script>
+        function AmountChange(){
+            document.getElementById("txtAmount").value = document.getElementById("amountRange").value;
+        }
+        function CalculateClick(){
+            var p = parseInt(document.getElementById("txtAmount").value);
+            var r = parseInt(document.getElementById("txtIntrest").value);
+            var n = parseInt(document.getElementById("txtYears").value);
+            var emi = "";
+        }
+        function UpdateAmount(){
+            document.getElementById("amountRange").value = document.getElementById("txtAmount").value;
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <div>
+        <h2>EMI Calculator</h2>
+        <div class="row">
+            <div class="col">
+                <div class="input-group">
+                    Amount You Need <span class="input-group-text">&#8377;</span><input type="text" id="txtAmount" onchange="UpdateAmount()" class="form-element">
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    for <input type="text" id="txtYears" class="form-element"> years
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    Intrest rate <input type="text" id="txtIntrest" class="form-element"> %
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                50,000<input type="range" onchange="AmountChange()" id="amountRange" min="50000" max="4000000" value="50000">40,00,000
+            </div>
+            <div class="col">
+                1 <input type="range" id="yearRange" min="1" max="5" value="1"> 5
+            </div>
+            <div class="col">
+                10.5% <input type="range" id="intrestRange" min="10" max="21" step="0.5" value="10">21%
+            </div>
+             <div class="row mt-4" >
+                <div class="col">
+                 <button onclick="CalculateClick()" class="btn btn-primary" >Calculate</button>
+                </div>
+             </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!-- Example on conditional Operator === -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify user</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var users = [
+            {UserName: 'john'},
+            {UserName: 'john_nit'},
+            {UserName: 'david'},
+            {UserName: 'david11'} 
+        ];
+        function VerifyUser(){
+            var username = document.getElementById("txtName").value;
+            var nameMsg = document.getElementById("nameMsg");
+            for (var user of users){                         //This checks each object one by one.
+                if(user.UserName===username){                //Check whether the username stored in the array is exactly the same as the username typed by the user
+                   nameMsg.innerHTML = "User name taken - try another";
+                   nameMsg.className = "text-danger";
+                   return;                                   //return; is used to stop the execution of a function immediately.
+                }else{
+                    nameMsg.innerHTML = "User Name Available";
+                    nameMsg.className = "text-success";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Register User</h2>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" onkeyup="VerifyUser()" id="txtName"></dd>
+        <dd id="nameMsg"></dd>
+    </dl>
+</body>
+</html>
+
+
+<!-- Example on Combining && for a login check against username AND password: -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify user</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var users = [
+            { UserName: 'john', Password: 'john@123' },
+            { UserName: 'john_nit', Password: 'john11' },
+            { UserName: 'david', Password: '12345' },
+            { UserName: 'david11', Password: 'david@11' }
+        ];
+        function VerifyUser() {
+            var username = document.getElementById("txtName").value;
+            var password = document.getElementById("txtPwd").value;
+
+            for (var user of users) {
+                if (user.UserName === username && user.Password === password) {
+                    document.write("<h2>Login Success</h2>");
+                } else {
+                    document.getElementById("msg").innerHTML = "Invalid UserName/Password";
+                    msg.className
+                }
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <h2>Register User</h2>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" id="txtName"></dd>
+        <dt>Password</dt>
+        <dd><input type="password" id="txtPwd"></dd>
+    </dl>
+    <button onClick="VerifyUser()">Login</button>
+    <h2 id="msg" class="text-center text-danger"></h2>
+</body>
+</html>
+

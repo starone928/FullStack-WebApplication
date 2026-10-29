@@ -1,0 +1,176 @@
+<!-- Example on Amazon Id Password verification -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Login</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        var userdetails = {
+            Email: 'john@gmail.com',
+            Mobile: '77766688800',
+            Password: 'john@12'
+
+        }
+        var userid = "";
+        function ContinueClick() {
+            userid = document.getElementById("txtUser").value;
+            if (userid == userdetails.Email) {
+                document.getElementById("password").style.display = "block";
+                document.getElementById("userid").style.display = "none";
+            }
+            else if (userid == userdetails.Mobile) {
+
+                document.getElementById("password").style.display = "block";
+                document.getElementById("userid").style.display = "none";
+            } else {
+                document.getElementById("userError").innerHTML = "Please Enter Valid Email or Mobile";
+            }
+        }
+        function ConformClick() {
+            var password = document.getElementById("txtPwd").value;
+            if (password == userdetails.Password) {
+                document.write(`Login Success ${userid}`);
+            } else {
+                document.getElementById("pwdError").innerHTML = "Invalid Password";
+            }
+        }
+    </script>
+</head>
+
+<body class="container-fluid">
+    <div class="d-flex justify-content-center align-items-center" style="height: 600px;">
+        <div>
+            <h3>Amazon SignIn</h3>
+            <div id="userid">
+                <label class="form-label">Sign in with Email or Mobile</label>
+                <div>
+                    <input type="text" id="txtUser" class="form-control">
+                    <div class="btn btn-danger" id="userError"></div>
+                </div>
+                <div class="mt-2">
+                    <button class="btn btn-warning w-100" onclick="ContinueClick()">
+                        Continue
+                    </button>
+                </div>
+            </div>
+            <div id="password" style="display: none;">
+                <label class="form-label">Your Password</label>
+                <div>
+                    <input type="password" id="txtPwd" class="form-control">
+                    <div class="text-danger" id="pwdError"></div>
+                </div>
+                <div class="mt-2">
+                    <button class="btn btn-warning w-100" onclick="ConformClick()">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+<!-- Example on switch cases -->
+
+<script>
+    var n = 1;
+    switch(n)
+    {
+        case 1:
+        document.write("One");
+        break;
+        case 2:
+        document.write("Two");
+        break;
+        case 3:
+        document.write("Three");
+        break;
+        default:
+        document.write("Please Enter 1 to 3");
+        break;
+    }
+</script>
+
+
+<!-- Example — switch on a string value: -->
+ <script>
+    function f1() {
+        var choise = "N";
+        switch (choise) {
+            case "y":
+            case "Y":
+                document.write("You selected Yes");
+                break;
+            case "n":
+            case "N":
+                document.write("You selected No");
+                break;
+            default:
+                document.write("Please enter y or n");
+                break;
+        }
+    }
+    f1();
+</script>
+
+
+
+<!-- Example on How to define a case for a range of values? -->
+
+<script>
+    function f1(){
+        var n = 6;
+        switch (true) {
+            case (n >= 1 && n <= 10):
+                document.write(`Your number ${n} is between 1 to 10`);
+                break;
+            case (n >= 10 && n <= 20):
+                document.write(`Your number ${n} is between 10 to 20`);
+                break;
+            case (n >= 5 && n <= 20):
+                document.write(`Your number ${n} is between 5 to 20`);
+                break;
+            default:
+                document.write(`Your number ${n} is -ve or above 20`);
+                break;
+        }
+    } f1();
+</script>
+
+
+
+<!-- Example on Can we define an if condition inside a switch case? -->
+
+<script>
+    function f1() {
+        var n = 5;
+        switch (true) {
+            case (n >= 1 && n <= 10):
+                if (n == 5) {
+                    document.write("You Entered 5");
+                } else {
+                    document.write(`Your number ${n} is between 1 to 10`);
+                }
+                break;
+            case (n > 10 && n <= 20):
+                document.write(`Your number ${n} is between 10 to 20`);
+                break;
+            case (n > 5 && n <= 20):
+                document.write(`Your number ${n} is between 5 to 20`);
+                break;
+            default:
+                document.write(`Your number ${n} is -ve or above 20`);
+                break;
+        }
+    } f1();
+</script>

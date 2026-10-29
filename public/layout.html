@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <style>
+        header
+        {
+            background-color: tomato;
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+            border: black 2px solid;
+        }
+        footer{
+            background-color: rgb(228, 16, 16);
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            padding:5px;
+            border: 2px black solid;
+        }
+        section{
+            height: 450px;
+            display: grid;
+            grid-template-columns: 2fr 8fr 2fr;
+            margin-top: 20px;
+        }
+        nav div {
+            border: 2px black solid;
+            border-radius: 10px;
+            width: 120px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 20px;
+            background-color: lightsalmon;
+            color: white;
+        }
+        aside{
+            width: 100px;
+            border: 2px dotted black;
+            height: 50px;
+            text-align: center;
+        }
+        article{
+            background-color: blue;
+            color: white;
+            width: 200px;
+            padding: 5px;
+            font-size: 25px;
+            text-align: center;
+            margin-left: 300px;
+
+        }
+        main div{
+            font-size: 40px;
+            text-align: center;
+        }
+        figure{
+            height: 100px;
+            border: 2px double black;
+            width: 200px;
+        }
+        dialog{
+            position: absolute;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>Amazon Shopping</div>
+    </header>
+    <section>
+        <nav>
+           
+                <div>Home</div>
+                <div>Electronics</div>
+                <div>Footwear</div>
+                <div>Fashion</div>
+           
+
+        </nav>
+        <main>
+            <dialog open="">Any Help?</dialog>
+            <div>Welcome to Online Shopping Store</div>
+            <figure>
+                Your Image
+                <figcaption>Samsung TV</figcaption>
+            </figure>
+            <article>70% Off on Electronics</article>
+        </main>
+        <aside>
+            Ads here...
+        </aside>
+    </section>
+    <footer>
+        <div> &copy; copyright 2021</div>
+    </footer>
+</body>
+
+</html>

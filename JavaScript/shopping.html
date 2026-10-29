@@ -1,0 +1,178 @@
+<!-- https://fakestoreapi.com/products -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FakeStore API</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function GetCategories() {
+            fetch("https://fakestoreapi.com/products/categories")  //this fetch method fetching the category
+                .then(function (response) {          //this return response..you can give any name res or response
+                    return response.json();
+                })
+                .then(function (data) {                  // this .then will collect the data
+                    data.unshift("All");
+                    for (var item of data) {
+                        var option = document.createElement("option");
+                        option.text = item.toUpperCase();   //this is what you see in option
+                        option.value = item;               //what submitted in option
+                        document.getElementById("lstCategories").appendChild(option);
+                    }
+                })
+        }
+        function GetProducts(url) {
+            document.getElementById("productsContainer").innerHTML="";
+            fetch(url)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    for (var item of data) {
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2";
+                        div.style.width = "200px";
+                        div.innerHTML = ` 
+                      <img src=${item.image} class="card-img-top" height="200px"/>
+                    <div class="card-header" style="height:140px">
+                       <p>${item.title}</p>
+                    </div>
+                    <div>
+                        <p>${item.price}</p>
+                        <p>Rating : ${item.rating.rate}<p>
+                            <p>Count : ${item.rating.count}</p>
+                     </div>
+                     <div class="card-footer">
+                       <button onclick="AddtoCartClick(${item.id})" class="btn btn-danger w-100">
+                        <span class="bi bi-cart4"></span>
+                        Add to Cart
+                        </button>        
+                    </div>
+                    `;
+                        document.getElementById("productsContainer").appendChild(div);
+                    }
+                })
+        }
+        function bodyload() {
+          GetCategories();
+          GetProducts("https://fakestoreapi.com/products");
+          GetCartItemsCount();
+        }
+        function CategoryChanged() {
+            var categoryName = document.getElementById("lstCategories").value;
+            if(categoryName=="All"){
+             GetProducts("https://fakestoreapi.com/products");
+            }else{
+              GetProducts(`https://fakestoreapi.com/products/category/${categoryName}`);
+            }
+        }
+        var cartItems =[];
+        var count = 0;
+        function GetCartItemsCount(){
+            count = cartItems.length;
+            document.getElementById("cartCount").innerHTML = count;
+        }
+
+        function AddtoCartClick(id){
+            fetch(`https://fakestoreapi.com/products/${id}`)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                cartItems.push(data);
+                alert("Item Added to Cart")
+                GetCartItemsCount();
+            })
+        }
+        function ShowCartClick(){
+            document.querySelector("tbody").innerHTML="";     //this will help to not to SHOW same item again
+            for(var item of cartItems){
+                var tr =document.createElement("tr");
+                var tdTitle = document.createElement("td");
+                var tdPrice = document.createElement("td");
+                var tdPhoto = document.createElement("td");
+
+                tdTitle.innerHTML = item.title;
+                tdPrice.innerHTML = item.price;
+
+                var img = document.createElement("img");
+                img.src =item.image;
+                img.width="100";
+                img.height="100";
+
+                tdPhoto.appendChild(img);
+
+                tr.appendChild(tdTitle);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdPhoto);
+
+                document.querySelector("tbody").appendChild(tr);
+
+            }
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyload()">
+    <header class="bg-danger text-white text-center p-2">
+        <h1> <span class="bi bi-cart4"></span>Shopping Online</h1>
+    </header>
+    <div class="row m-2">
+        <div class="col-2">
+            <h4>Select a Category</h4>
+            <select class="form-select" id="lstCategories" onchange="CategoryChanged()">
+
+            </select>
+        </div>
+        <div class="col-8">
+            <div id="productsContainer" class="d-flex flex-wrap overflow-auto" style="height: 500px;">
+
+            </div>
+        </div>
+        <div class="col-2">
+          <button onclick="ShowCartClick()" class="btn btn-warning" data-bs-target="#cart" data-bs-toggle="modal">
+            [<span id="cartCount"></span>]
+            <span class="bi bi-cart3"></span>
+            Your Cart Items
+          </button>
+          <div class="modal fade" id="cart">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                   <h3>Ypur Cart Items</h3>
+                   <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                 <div class="modal-body"> 
+                 <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Preview</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                 </table>
+                 </div>
+                 <div class="modal-footer">
+                  <button data-bs-dismiss="modal" class="btn btn-success">OK</button>
+                 </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+</body>
+
+</html>

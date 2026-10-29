@@ -1,0 +1,35 @@
+<!-- Example No 1 : A function can use other functions as parameters to handle a callback mechanism -->
+
+<script>
+    function login(userid, password, success, failure) {  //you are creating a function called login. It accepts 4 parameters:
+        if (userid == "john" && password == "john1") {   //&& means both must be true.
+            success();                           //success contains a function. You passed this function here:- function(){document.write('Login Success')}   
+        } else {
+            failure()
+        }
+    } login('john', 'john1', function () { document.write('Login Success') }, function () { document.write('Invalid Credentials') });
+</script>
+
+
+<!-- Example No 2 : using the rest parameter (...) and array destructuring. -->
+
+<script>
+  function Login(...loginDetails){                   //... here is called the rest parameter. It collects all arguments passed to the function into an array.
+    const [userid, password, success, failure] = loginDetails;
+    if(userid=="john" && password=="john1"){
+      success();
+    }else{
+      failure()
+    }
+  } Login('john', 'john1', function(){document.write('Login Succcessfull')}, function(){document.write('Invalid Credentials')});
+</script>
+
+ <!-- Example on function with return type -->
+
+<script>
+    function Add(a, b){
+        return a + b;
+    } document.write(`type on add: ${typeof Add(10,20)} <br/> Addition=${Add(10,20)}`);
+</script>
+
+

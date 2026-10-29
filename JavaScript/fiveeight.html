@@ -1,0 +1,366 @@
+<!-- Example no 1 :- Reading from Array anf Presenting -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+           var categories = ["Electronics", "Footwear", "Fashion"];
+           function bodyload(){
+                for(var category of categories)
+                {
+                    var li = document.createElement("li");
+                    li.innerHTML = category;
+                    document.querySelector("ol").appendChild(li);
+
+                    var option = document.createElement("option");
+                    option.text = category;
+                    document.querySelector("select").appendChild(option);
+
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    td.innerHTML = category;
+                    tr.appendChild(td);
+                    document.querySelector("tbody").appendChild(tr);
+                }
+           }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div class="container-fluid">
+        <h2 class="text-center bg-danger text-white ">Arrays</h2>
+        <div class="row">
+          <div class="col">
+           <h3>Categories List</h3>
+           <ol>
+
+           </ol>
+          </div>
+          <div class="col">
+            <h3>Select Category</h3>
+            <select class="form-control">
+
+            </select>
+
+          </div>
+          <div class="col">
+            <h3>Categories Table</h3>
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                    <th>Categories</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+<!-- Example no 2 :- What type of data we can store in Array -->
+
+<script>
+    var values = ["A",1000,true,['TV', 'Mobile'],function(){document.write('Function in Array')}];
+    document.write(values[3][1] + "<br/>")
+    values[4]();
+</script>
+
+
+
+<!-- Example no 3 :- Array Destruction and Callback -->
+
+<script>
+    var authorize = [
+        "admin",
+        function(){document.write("Login Success")},
+        function(){document.write("Invalid Password")}
+    ];
+
+    var[password, success, failure] = authorize;
+
+    var yourPassword = prompt("Enter Password");
+    if(password==yourPassword){
+        success();
+    }else{
+        failure();
+    }
+</script>
+
+
+
+<!-- Example no 4 :- Adding Values into Array
+ push() unshift() splice check line 110 111 112-->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+           var categories = ["Electronics", "Footwear", "Fashion"];
+           categories.push("Kid's wear");
+           categories.unshift("Select a Category");
+           categories.splice(2,0,"Men's Clothing");
+           function bodyload(){
+                for(var category of categories)
+                {
+                    var li = document.createElement("li");
+                    li.innerHTML = category;
+                    document.querySelector("ol").appendChild(li);
+
+                    var option = document.createElement("option");
+                    option.text = category;
+                    document.querySelector("select").appendChild(option);
+
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    td.innerHTML = category;
+                    tr.appendChild(td);
+                    document.querySelector("tbody").appendChild(tr);
+                }
+           }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div class="container-fluid">
+        <h2 class="text-center bg-danger text-white ">Arrays</h2>
+        <div class="row">
+          <div class="col">
+           <h3>Categories List</h3>
+           <ol>
+
+           </ol>
+          </div>
+          <div class="col">
+            <h3>Select Category</h3>
+            <select class="form-control">
+
+            </select>
+
+          </div>
+          <div class="col">
+            <h3>Categories Table</h3>
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                    <th>Categories</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<!-- Example no 5 :- Dynamically Adding and Removing Items from Array -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var cities = ["Delhi", "Hyd"]
+        function LoadCities() {
+            document.getElementById("lstCities").innerHTML = "";
+            for (var city of cities) {
+                var option = document.createElement("option");
+                option.text = city;
+                document.getElementById("lstCities").appendChild(option);
+            }
+        }
+        function bodyLoad() {
+            LoadCities();
+        }
+        function AddClick() {
+            var cityname = document.getElementById("txtCity").value;
+            var cityIndex = cities.indexOf(cityname);
+            if (cityIndex == -1) {
+                cities.push(cityname);
+                alert(`${cityname} Added to List`);
+                LoadCities();
+                document.getElementById("txtCity").value = "";
+            } else {
+                alert("City Exists - Try Another");
+            }
+        }
+        function RemoveClick() {
+            var selectedCityName = document.getElementById("lstCities").value;
+            var selectedCityIndex = cities.indexOf(selectedCityName);
+            alert(`${cities.splice(selectedCityIndex, 1)} Removed`);
+            LoadCities();
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyLoad()">
+    <h2>Array Manipulation</h2>
+    <div class="row">
+        <div class="col-3">
+            <fieldset>
+                <legend>Add New City</legend>
+                <div class="input-group">
+                    <input type="text" id="txtCity" class="form-control">
+                    <button onclick="AddClick()" class="btn btn-primary">Add</button>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-9">
+            <h3>Cities List</h3>
+            <div class="input-group">
+                <select class="form-select" id="lstCities">
+
+                </select>
+                <button class="btn btn-danger" onclick="RemoveClick()">Remove City</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+<!-- Example 6 :- sort and reverse used situation wise -->
+
+
+<!-- <script>
+    var cities = ["Delhi", "Bangalore", "Chennai", "Hyd", "Mumbai", "Pune", "Goa"];
+    for(var city of cities){
+        document.write(city + "<br/>")
+    }
+</script> -->
+
+<!-- <script>
+    var cities = ["Delhi", "Bangalore", "Chennai", "Hyd", "Mumbai", "Pune", "Goa"];
+    cities.sort();      // sorting A-Z order
+    for(var city of cities){
+        document.write(city + "<br/>")
+    }
+</script> -->
+
+<!-- <script>
+    var cities = ["Delhi", "Bangalore", "Chennai", "Hyd", "Mumbai", "Pune", "Goa"];
+    cities.reverse();      //reverse means start with Goa and end by Delhi
+    for(var city of cities){
+        document.write(city + "<br/>")
+    }
+</script> -->
+
+<script>
+    var cities = ["Delhi", "Bangalore", "Chennai", "Hyd", "Mumbai", "Pune", "Goa"];
+    cities.sort();
+    cities.reverse();              //combine this will reverse the array from A-Z
+    for(var city of cities){
+        document.write(city + "<br/>")
+    }
+</script>
+
+
+
+
+<!-- Example no 7 :- sort() and reverse() -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var cities = ["Delhi", "Hyd"]
+        function LoadCities() {
+            document.getElementById("lstCities").innerHTML = "";
+            for (var city of cities) {
+                var option = document.createElement("option");
+                option.text = city;
+                document.getElementById("lstCities").appendChild(option);
+            }
+        }
+        function bodyLoad() {
+            LoadCities();
+        }
+        function AddClick() {
+            var cityname = document.getElementById("txtCity").value;
+            var cityIndex = cities.indexOf(cityname);
+            if (cityIndex == -1) {
+                cities.push(cityname);
+                alert(`${cityname} Added to List`);
+                LoadCities();
+                document.getElementById("txtCity").value = "";
+            } else {
+                alert("City Exists - Try Another");
+            }
+        }
+        function RemoveClick() {
+            var selectedCityName = document.getElementById("lstCities").value;
+            var selectedCityIndex = cities.indexOf(selectedCityName);
+            alert(`${cities.splice(selectedCityIndex, 1)} Removed`);
+            LoadCities();
+        }
+        function SortReverse(){
+            cities.reverse();
+            LoadCities();
+        }
+        function SortAsc(){
+            cities.sort();
+            LoadCities();
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyLoad()">
+    <h2>Array Manipulation</h2>
+    <div class="row">
+        <div class="col-3">
+            <fieldset>
+                <legend>Add New City</legend>
+                <div class="input-group">
+                    <input type="text" id="txtCity" class="form-control">
+                    <button onclick="AddClick()" class="btn btn-primary">Add</button>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-9">
+            <h3>Cities List</h3>
+            <div class="input-group">
+                <select class="form-select" id="lstCities">
+
+                </select>
+                <button class="btn btn-danger" onclick="RemoveClick()">Remove City</button>
+                <button onclick="SortReverse()" class="btn btn-info">Reverse Sort</button>
+                <button onclick="SortAsc()" class="btn btn-warning">Sort</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,48 @@
+<!-- Function Started
+Example No : 1 -->
+
+<script>
+    function PrintNumbers(totalCount) {
+        for (var i = 1; i <= totalCount; i++) {
+            document.write(`${i}<br/>`);
+        }
+    }
+    PrintNumbers(50);
+</script>
+
+<!-- Example No 2 : Functions can have multiple parameters, which are order-dependent -->
+
+<script>
+    function PrintNumbers(startNumber, endNumber) {
+        for (var i = startNumber; i <= endNumber; i++) {
+            document.write(`${i}<br/>`);
+        }
+    } PrintNumbers(12, 25);
+</script>
+
+<!-- Example No 3 :  A function can accept any type of parameter — both primitive and non-primitive: -->
+
+<script>
+    function PrintProduct(id, name, price, stock, cities, rating) {   //You created a function called PrintProduct  It accepts 6 parameters:
+        //The backticks: allow you to write multiple lines.
+        document.write(`                                                
+        Product Id: ${id}<br/>
+        Name:${name} <br/>
+        Price: ${price} <br/>
+        Stock: ${(stock == true) ? "Available" : "Out of Stock"}<br/>      
+        Shipped to:${cities.toString()} <br/>
+        rating:${rating.rate}<br/>
+        from:${rating.count}
+        `);                                          //rating contains two properties: rate and count
+    } PrintProduct(101, "Samsung TV", 5600.56, true, ['Delhi', 'Mumbai', 'Pune'], { rate: 4.3, count: 500 });
+    // These are the arguments.They get assigned like this:
+    // id = 101
+    // name = "Samsung TV"
+    // price = 5600.56
+    // stock = true
+    // cities = ['Delhi', 'Mumbai', 'Pune']
+    // rating = { rate: 4.3, count: 500 }
+</script>
+
+
+

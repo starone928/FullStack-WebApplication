@@ -1,0 +1,88 @@
+<!-- var example no 1 -->
+<!-- <script>
+    username = prompt("Enter Name");
+    document.write("Hello ! " + username);
+    document.write(" I am example one." + username);
+</script> -->
+
+
+<!-- var example no 2   line 11 - 20 curly bracess known as function scope -->
+<!-- <script>
+    function f1(){
+        var x;
+        x = 10;
+        if(x==10)               // line 14 - 18 called block
+    {                         
+          var y = 20;
+          var y = 30;   // shadowing
+    }
+      document.write("x=" + x + "<br/>" + "y=" +y);
+    }
+    f1();
+</script> -->
+
+<!-- var example no 3 -->
+<!-- <script>
+    "use strict";
+    function f1(){
+        x = 10;
+        document.write("X=" + x);
+        var x;  //hoisting
+    }
+    f1();
+ </script> -->
+
+<!-- let example no 1 -->
+<!-- <script>
+    "use strict"
+    function f1() {
+        let x;
+        x = 10;
+        if (x == 10) 
+        {
+            let y = 20;
+            document.write("x=" + x + "<br/>" + "y=" +y);
+        }
+    }
+    f1();
+</script> -->
+
+<!-- const example no 1 -->
+<!-- <script>
+    "use strict"
+    function f1() {
+        const username = prompt("Enter Name");  //prooved here in const value can change
+        document.write("Hello ! " + username);
+    }
+    f1();
+</script> -->
+
+
+<!-- global scope example no 1 -->
+ <!-- <script>       //line 63 - 71 this entire area called module
+    var x = 10;        // and this is module scope variable line 63
+    function f1(){
+        document.write("x is funxtion-1 :" + x + "<br/>");
+    }
+    function f2(){
+        document.write("x in function-2 :" + x);
+    }
+    f1();
+    f2();
+ </script> -->
+
+ <!-- global scope example no 2 -->
+  <!-- <script>
+    var x = 10;
+    function f1()
+    {
+        window.y = 20;     //declaring global variable inside fun using browser window object.
+        document.write("x in function-1 :" + x + "<br/> y in function-1 : " + y + "<br/>");
+    }
+    function f2()
+    {
+        document.write("x in function-2 :" + x + "<br/> y in function-2 : " + y );
+    }
+    f1();
+    f2();
+  </script> -->

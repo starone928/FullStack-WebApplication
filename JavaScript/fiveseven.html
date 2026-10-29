@@ -1,0 +1,166 @@
+<!-- Example No 1 :- toString() -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.toString());
+</script>
+
+
+
+<!-- Example No 2 :- join() -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.join("-->"));
+</script>
+
+
+
+<!-- Example No 3 :- slice() -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.slice(1,3));
+</script>
+
+
+
+<!-- Example No 4 :- filter -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    function GetData(value){
+        return value > 50000;
+    }
+    var result = sales.filter(GetData);
+    document.write(result);
+</script>
+
+<!-- Example No 5 :- filter -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.filter(function(value){return value<50000}));
+</script>
+
+
+
+<!-- Example No 6 :- find -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.find(function(value){return value>50000}));
+</script>
+
+
+
+<!-- Example No 7 :- map() -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000, 56000];
+    sales.map(function (value) {
+        document.write(`<li>${value}</li>`)
+    }
+    )
+</script>
+
+
+
+<!-- Example No 8 :- printing index and property :- -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000, 56000];
+    for (var property in sales) {
+        document.write(`[${property}] ${sales[property]} <br/>`)
+    }
+</script>
+
+<!-- Example No 9 :- printing property using of :- -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000, 56000];
+    for (var property of sales) {
+        document.write(property + `<br/>`)
+    }
+</script>
+
+<!-- Example No 10 :- printing index using in :- -->
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000, 56000];
+    for (var property in sales) {
+        document.write(property + `<br/>`)
+    }
+</script>
+
+
+
+<!-- Example No 11 :- Dynamically Creating and Adding DOM elements using Array -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyanamic</title>
+    <script>
+           function AddImage(){
+            var pic = document.createElement("img");
+            pic.src = "../public/assets/17 pro.jpg";
+            pic.width = "100";
+            pic.height = "100";
+            document.getElementById("container").appendChild(pic);
+           }
+    </script>
+</head>
+<body>
+    <div>
+        <button onclick="AddImage()">Add Image to Page</button>
+    </div>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+
+<!-- Example No 12 :- Dynamically Creating and Adding DOM elements using Array -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyanamic</title>
+    <script>
+        var products = ["../public/assets/mobile.jpg", "../public/assets/footwear.webp", "../public/assets/shirt.webp"];
+        function bodyload() {
+            for (var path of products) {
+                var pic = document.createElement("img");
+                pic.src = path;
+                pic.width = "100";
+                pic.height = "100";
+                document.getElementById("container").appendChild(pic);
+
+                var option = document.createElement("option");
+                option.text = path;
+                document.querySelector("select").appendChild(option);
+
+                var li = document.createElement("li");
+                li.innerHTML = path;
+                document.querySelector("ol").appendChild(li);
+            }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div id="container">
+
+    </div>
+    <h2>Select Path</h2>
+    <select ></select>
+    <h2>Images Path List</h2>
+    <ol>
+
+    </ol>
+</body>
+</html>

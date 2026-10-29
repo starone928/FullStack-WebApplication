@@ -1,0 +1,65 @@
+<!-- Example — Your code demonstrates a constructor executing automatically when an object is created. -->
+
+<script>
+  class Database
+  {
+    constructor(){
+      console.log('Connected to Database');     //This runs automatically when you create an object.
+    }
+    Insert(){
+      document.write('Record Inserted');          //This method does not run automatically. You must call it:
+    }
+    Delete(){
+      document.write('Record Deleted');              //Similarly, call it manually: 
+    }
+  }
+  let db = new Database();            //When this line executes:
+</script>
+
+
+<!-- Example on Aggregation  -->
+ <script>
+  class BaseClass                  //This creates a class called BaseClass with a method:
+  {
+    Print(){
+      document.write(`Base Class Print Method<br>`);
+    }
+  }
+  class Derived               //Derived class
+  {
+    Print(){                   //Inside Derived.Print():
+      let obj = new BaseClass();      //Create a BaseClass object
+      obj.Print();               //Call its Print() method
+      document.write(`Derived Class Print Method<br>`);
+    }
+  }
+  let obj = new Derived;       //This creates an object of the Derived class.
+  obj.Print();              //calls the Print() method of Derived.
+</script> 
+
+
+<!-- This is an example of Inheritance, constructor chaining, and the super keyword. -->
+
+<script>
+  class BaseClass
+  {
+    Print(){
+      document.write(`Base Class Print Method<br>`);
+    }
+  }
+  class Derived extends BaseClass             //Derived inherits members from BaseClass.
+  {
+    constructor(){              //Constructor in Derived
+      super('john');        //calls the constructor of the parent (BaseClass).
+      document.write(`Derived Class Constructor<br>`);
+    }
+    Print(){
+      document.write(`Derived Class Print Method<br>`);
+      super.Print();
+    }
+  }
+  let obj = new Derived;          //the Derived constructor executes automatically.
+  obj.Print();
+</script>
+
+

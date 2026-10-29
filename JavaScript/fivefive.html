@@ -1,0 +1,230 @@
+<!-- example 1 on slice() -->
+
+<!-- <script>
+    var msg = "Welcome to Javascript";
+    document.write(msg.slice(3,9));            o/p:- come t
+</script> -->
+
+
+<!-- example 2 on substr() -->
+
+<!-- <script>
+    var msg = "Welcome to Javascript";         o/p:- come to J
+    document.write(msg.substr(3,9));
+</script> -->
+
+
+<!-- example 3 on substring() -->
+
+<!-- <script>
+    var msg = "Welcome to Javascript";
+    document.write(msg.substring (10,5));         o/p:-  me to
+</script> -->
+
+
+<!-- example 4 on indexOf() lastindexOf() -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+    <script>
+        function VerifyEmail(){
+            var email = document.getElementById("txtEmail").value;
+            var msg = document.querySelector("h2");
+            var atPos = email.indexOf("@");
+            if(atPos<2){
+                msg.innerHTML = "Invalid Email";
+            } else {
+                msg.innerHTML = "Email Verified";
+            }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Your Email</legend>
+        <input type="text" id="txtEmail"> <button onclick="VerifyEmail()">Submit</button>
+    </fieldset>
+    <h2></h2>
+</body>
+</html> -->
+
+
+
+<!-- example no 5 on startsWith() & endsWith -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function VerifyCard() {
+            var cardnumber = document.getElementById("txtCard").value;
+            var cardImg = document.getElementById("cardImg");
+            if (cardnumber.startsWith("4444")) {
+                cardImg.src = "../public/assets/master.png";
+            } else if (cardnumber.startsWith("5555")) {
+                cardImg.src = "../public/assets/visaa.jpg";
+            } else {
+                cardImg.src = "";
+                cardImg.alt = "N/A";
+            }
+        }
+        function VerifyEmail() {
+            var email = document.getElementById("txtEmail").value;
+       if(email.endsWith("gmail.com")) {
+            document.getElementById("msg").innerHTML = "Email Verified";
+        } else {
+            document.getElementById("msg").innerHTML = "Invalid Email";
+        }
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <fieldset>
+        <legend>Verify Details</legend>
+        <div>
+            <h3>Card Number</h3>
+            <div class="input-group">
+                <input type="text" id="txtCard" onkeyup="VerifyCard()" class="form-control">
+                <img class="input-group-text" id="cardImg" class="img-fluid" width="100" height="50">
+            </div>
+            <h3>Your Gmail</h3>
+            <div>
+                <input type="text" id="txtEmail" onkeyup="VerifyEmail()" class="form-control">
+                <div id="msg">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</body>
+</html> -->
+
+
+
+<!-- example no 6 on match & expression -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Demo</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        meter {
+            height: 30px;
+        }
+    </style>
+    <script>
+        function VerifyPassword() {
+            var password = document.getElementById("txtPwd").value;
+            var regExp = /(?=.*[A-Z])\w{4,15}/;
+            var msg = document.getElementById("msg");
+            var grade = document.getElementById("grade")
+
+            function ShowGrade(min, max, value, low, high) {
+                grade.min = min;
+                grade.max = max;
+                grade.value = value;
+                grade.low = low;
+                grade.high = high;
+            }
+
+
+            if (password == "") {
+                msg.innerHTML = "Password Required";
+                msg.className = "text-danger";
+            } else {
+                if (password.match(regExp)) {
+                    msg.innerHTML = "Strong Password";
+                    msg.className = "text-success";
+                    ShowGrade(1,100,100,0,0);
+                } else {
+                    if (password.length < 4) {
+                        msg.innerHTML = "Poor Password";
+                        msg.className = "text-danger";
+                        ShowGrade(1,100,100,60,80);
+                    } else {
+                        msg.innerHTML = "Weak Password";
+                        msg.className = "text-warning"
+                        ShowGrade(1,100,100,40,80);
+                    }
+
+                }
+            }
+        }
+        function VerifyMobile(){
+            var mobile = document.getElementById("txtMobile").value;
+            var mobileExpression = /\+91\d{10}/;
+            var mobileError = document.getElementById("mobileError");
+            if(mobile.match(mobileExpression)){
+                mobileError.innerHTML = "";
+            } else {
+                mobileError.innerHTML = "Invalid Mobile";
+                mobileError.className = "text-danger";
+            }
+
+        }
+    </script>
+</head>
+
+<body class="container-fluid">
+    <h2>Verify Password</h2>
+    <input type="password" id="txtPwd" onkeyup="VerifyPassword()" class="form-control">
+    <div id="msg"></div>
+    <div>
+        <meter id="grade" min="1" max="100" class="w-100"></meter>
+    </div>
+    <h2>Verify Mobile</h2>
+    <input type="text" id="txtMobile" onkeyup="VerifyMobile()" class="form-control">
+    <div id="mobileError"></div>
+</body>
+
+</html> -->
+
+
+
+
+<!-- example no 7 on trim it will remove extra space before and after password -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trim Demo</title>
+    <script>
+        function VerifyPassword(){
+            var pwd = document.getElementById("txtPwd").value;  //password they entered
+            if(pwd.trim()=="admin"){                                   //if password is matching to admin
+                document.querySelector("h2").innerHTML = "Verified"; //in h2 print msg Verified
+            }else {
+                document.querySelector("h2").innerHTML = "Invalid Password";
+            }
+        }
+    </script>
+</head>
+<body>
+    Your Password:
+    <input type="text" id="txtPwd"> <button onclick="VerifyPassword()">Submit</button>
+    <h2></h2>
+</body>
+</html> -->
+
+
+
+<!-- example no 8 on Split() -->
+
+<!-- <script>
+    var mobileNumber = "9876592411, 9988856632, 7896541854";
+    var result = mobileNumber.split(',');  //split ata coma nntr che Number separate krnar
+    document.write(result[2]);   // 2 means 3rd No print honar o/p mdhe
+</script> -->

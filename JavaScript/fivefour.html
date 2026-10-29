@@ -1,0 +1,233 @@
+<!-- Example 1 on string Formating Methods:- -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Demo</title>
+    <script>
+        function VerifyUSer(){
+            var username = document.getElementById("txtName").value;
+            var msg = document.getElementById("msg");
+            if(username.length>=4 && username.length<=10)
+        {
+            msg.innerHTML = "User Name Verified".bold().fontcolor('green').italics();
+        }  else {
+            msg.innerHTML = "Invalid - User Name 4 to 10 chars Only".italics().fontcolor('red');
+        }
+        }
+        function ChangeCase(){
+            var username = document.getElementById("txtName").value;
+            document.getElementById("txtName").value = username.toUpperCase();
+        }
+    </script>
+</head>
+<body>
+    <h2>Register User</h2>
+    <dl>
+        <dt>User Name</dt>
+        <dd><input type="text" id="txtName" onkeyup="VerifyUSer()" placeholder="Block Letter" onblur="ChangeCase()"></dd>
+        <dd id="msg"></dd>
+    </dl>
+    <button onclick="VerifyUSer()">Submit</button>
+</body>
+</html> -->
+
+
+
+<!-- Example no 2 Formating a string Dynamically using string format function -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+    <script>
+        function ChangeColor(){
+            alert(document.querySelector("select").value);
+            document.querySelector("p").innerHTML= "Welcome to Javascript".fontcolor(document.querySelector("select").value);
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Choose Effects</legend>
+        <dl>
+            <dt>Font Color</dt>
+            <dd>
+                <select onchange="ChangeColor()">
+                    <option>Red</option>
+                    <option>Green</option>
+                    <option>White</option>
+                    <option>Yellow</option>
+                </select>
+            </dd>
+        </dl>
+    </fieldset>
+    <p></p>
+</body>
+</html> -->
+
+
+<!-- Example no 3 formating string by using Styles
+ if o/p not display create another file and copy paste this code there -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+    <script>
+        function ChangeColor(){
+            document.querySelector("p").style.color = document.querySelector("select").value;
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Choose Effects</legend>
+        <dl>
+            <dt>Font Color</dt>
+            <dd>
+                <select onchange="ChangeColor()">
+                    <option>Red</option>
+                    <option>Green</option>
+                    <option>White</option>
+                    <option>Yellow</option>
+                </select>
+            </dd>
+        </dl>
+    </fieldset>
+    <p>Welcome To Javascript</p>
+</body>
+</html> -->
+
+
+<!-- Example no 4 on Dynamically applying CSS Class -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Demo</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+       function ChangeTheme(){
+        var themeCheckBox = document.getElementById("theme");
+        var formContainer = document.getElementById("formContainer");
+        if(themeCheckBox.checked) {
+            formContainer.className = "dark-theme";
+            document.querySelector("button").className="btn btn-dark w-100"
+        } else {
+            formContainer.className = "light-theme";
+            document.querySelector("button").className="btn btn-primary w-100"
+        }
+       }
+    </script>
+    <style>
+        .form{
+            border: 2px solid black;
+            padding: 20px;
+            width: 250px;
+            margin-top: 20px;
+        }
+        .dark-theme{
+            background-color: black;
+            color: white;
+             border: 2px solid black;
+            padding: 20px;
+            width: 250px;
+            margin-top: 20px;
+        }
+        .light-theme {
+            background-color: white;
+            color: black;
+             border: 2px solid black;
+            padding: 20px;
+            width: 250px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="container-fluid">
+    <div class="form" id="formContainer">
+        <div class="form-switch">
+           <input type="checkbox" id="theme" onchange="ChangeTheme()" class="form-check-input"> Dark Theme
+        </div>
+        <h2>Register User</h2>
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text"></dd>
+            <dt>Password</dt>
+            <dd><input type="password"></dd>
+            <dt>Email</dt>
+            <dd><input type="email"></dd>
+        </dl>
+        <button class="btn w-100">Login</button>
+    </div>
+</body>
+</html> -->
+
+
+<!-- Example 5 on string Manipulation -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+    <script>
+        function ChangeCase(){
+            var username = document.getElementById("txtName").value;
+            var firstChar = username.charAt(0);
+            var restChars = username.substring(1);
+            var sentence = firstChar.toUpperCase() + restChars.toLowerCase();
+            document.getElementById("txtName").value = sentence;
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Test</legend>
+        <div>
+            <input type="text" id="txtName" onblur="ChangeCase()">
+        </div>
+    </fieldset>
+</body>
+</html> -->
+
+
+<!-- Example 6 on string Manipulation -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String</title>
+    <script>
+        function VerifyName(){
+           var username = document.getElementById("txtName").value;
+           if(username.charCodeAt(0)>=65 && username.charCodeAt(0)<=90){
+            document.querySelector("p").innerHTML = "";
+           } else {
+            document.querySelector("p").innerHTML = "Name must start with uppercase letter".fontcolor('red');
+           }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>User Name</legend>
+        <div>
+            <input type="text" size="40" placeholder="Name must start with Uppercase Letter" id="txtName" onkeyup="VerifyName()">
+        <p></p>
+        </div>
+    </fieldset>
+</body>
+</html> -->

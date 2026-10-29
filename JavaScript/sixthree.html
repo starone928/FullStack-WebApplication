@@ -1,0 +1,100 @@
+<script>
+    var x = 10;
+    var y = 20;
+    var sum = x + y ;
+    document.write(sum);
+</script>
+
+
+<!-- Example — checking whether a number is even: -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulus</title>
+    <script>
+        function SubmitClick(){
+          var n = document.getElementById("txtEven").value;
+          var msg = document.getElementById("msg");
+          if(parseInt(n) %2 == 0){     
+              msg.innerHTML = "Verified"
+          }else{
+              msg.innerHTML = "Not an Even Number";
+          }
+        }
+        
+    </script>
+</head>
+<body>
+    Enter Even Number:
+    <input type="text" id="txtEven">
+    <button onclick="SubmitClick()">Submit</button>
+    <div id="msg"></div>
+</body>
+</html>
+
+<!-- Example on Exponant Operator -->
+
+<script>
+    document.write(2**3)
+    document.write(`<br/>`)
+    document.write(Math.pow(2,3));
+</script>
+
+<!-- Example on Increament decreament Operator -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator +-</title>
+    <script>
+        var number = 0;
+        function ShowNumber() {
+            document.getElementById("lblNumber").innerHTML = number;
+
+        }
+        function Decrease() {
+            if (number > 0) {
+                number--;
+                ShowNumber();
+            } else {
+                alert("Reach Minimum limit");
+            }
+
+
+        }
+        function Increase() {
+            if (number < 10) {
+                number++;
+                ShowNumber();
+            } else {
+                alert("Reach Maximum Number")
+            }
+
+        }
+        function bodyLoad() {
+            ShowNumber();
+
+        }
+
+    </script>
+</head>
+
+<body onload="bodyLoad()">
+    <button onclick="Decrease()">-</button>
+    <span id="lblNumber" style="font-size: 30px; margin: 20px;"></span>
+    <button onclick="Increase()">+</button>
+</body>
+
+</html>
+
+
+
+
+
+

@@ -1,0 +1,95 @@
+<!-- Date Type :- this example will return current time -->
+
+<script>
+    let Mfd = new Date();
+    document.write(`${Mfd.toLocaleTimeString()}`);
+</script>
+
+
+<!-- Example JavaScript Timer Events:- -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: 9fr 3fr;
+            background-color:coral;
+           
+        }
+        #container span:last-child{
+           text-align:right;  
+        }
+    </style>
+    <script>
+        function clock(){
+            var now = new Date();
+            document.getElementById("time").innerHTML = now.toLocaleTimeString();
+        }
+        function bodyLoad(){
+            setInterval(clock, 1000);
+        }
+    </script>
+</head>
+<body onload="bodyLoad()">
+    <div id="container">
+         <span>Amazone Shopping</span>
+         <span id="time"></span>
+    </div>
+</body>
+</html>
+
+
+<!-- Example on generating random captcha code -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+  <script>
+    function GenerateCode(){
+      var a = Math.random() * 10;
+      var b = Math.random() * 10;
+      var c = Math.random() * 10;
+      var d = Math.random() * 10;
+      var e = Math.random() * 10;
+      var f = Math.random() * 10;
+      return `${Math.round(a)} ${Math.round(b)} ${Math.round(c)} ${Math.round(d)} ${Math.round(e)} ${Math.round(f)}`
+    }
+    function bodyLoad(){
+      document.getElementById("code").innerHTML = GenerateCode();
+    }
+    function NewClick(){
+      bodyLoad();
+    }
+  </script>
+  <style>
+    dd,dt {
+        margin-top: 10px;
+    }
+  </style>
+</head>
+<body onload="bodyLoad()">
+  <fieldset>
+    <legend>User Login</legend>
+    <dl>
+      <dt>User Name</dt>
+      <dd><input type="text" /></dd>
+      <dt>Password</dt>
+      <dd><input type="password"></dd>
+      <dt>Verify code </span><button onclick="NewClick()"><span class="bi bi-arrow-clockwise"></span></button><br/><span id="code"></dt>
+    </dl>
+    <button>Login</button>
+  </fieldset>
+</body>
+</html>
+
+
+

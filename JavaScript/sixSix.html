@@ -1,0 +1,110 @@
+<!-- Special Operators 
+ The Ternary Operator (?:) is a shortcut for if...else.-->
+
+<script>
+    var age = 20;
+    var result = (age >= 18) ? "Adult" : "Minor";
+    document.write(result)
+</script>
+
+
+<script>
+    var age = 20;
+
+if (age >= 18) {
+    console.log("Adult");
+} else {
+    console.log("Minor");
+}
+</script>
+
+
+<!-- Example — a nested payment-verification flow (card number → CVV → expiry):
+            Multi-Level Decision (Nested if) -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision Making</title>
+    <script>
+        var userdetails = {
+            CardNumber: 44445555666677778938,
+            Cvv: "4040",
+            Expiry: "2023"
+        }
+
+        function PayClick() {
+            var card = document.getElementById("txtCard").value;
+            var cvv = document.getElementById("txtCvv").value;
+            var expiry = document.getElementById("lstExpiry").value;
+            var msg = document.getElementById("msg");
+
+            if (userdetails.CardNumber == card) {
+                if (userdetails.Cvv == cvv) {
+                    if (userdetails.Expiry == expiry) {
+                        document.write("Payment Success...");
+                    } else {
+                        msg.innerHTML = "Invalid Expiry";
+                    }
+                } else {
+                    msg.innerHTML = "Invalid CVV";
+                }
+            } else {
+                msg.innerHTML = "Invalid Card Number";
+            }
+        }
+        function VerifyCard() {
+            var card = document.getElementById("txtCard").value;
+            if (userdetails.CardNumber == card) {
+                document.getElementById("txtCvv").disabled = false;
+            } else {
+                document.getElementById("txtCvv").disabled = true;
+            }
+        }
+        function VerifyCvv() {
+            var cvv = document.getElementById("txtCvv").value;
+            if (userdetails.Cvv == cvv) {
+                document.getElementById("lstExpiry").disabled = false;
+            } else {
+                document.getElementById("lstExpiry").disabled = true;
+            }
+        }
+        function VerifyExpiry() {
+            var expiry = document.getElementById("lstExpiry").value;
+
+            if (userdetails.Expiry == expiry) {
+                document.getElementById("btnPay").disabled = false;
+            } else {
+                document.getElementById("btnPay").disabled = true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Payment Details</legend>
+        <dl>
+            <dt>Card Number</dt>
+            <dd><input type="text" onkeyup="VerifyCard()" id="txtCard"></dd>
+            <dt>CVV</dt>
+            <dd><input type="text" id="txtCvv" onkeyup="VerifyCvv()" disabled size="4"></dd>
+            <dt>Expiry</dt>
+            <dd>
+                <select id="lstExpiry" onchange="VerifyExpiry()" disabled>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+            </dd>
+        </dl>
+        <button disabled id="btnPay" onclick="PayClick()">Pay</button>
+    </fieldset>
+    <h2 id="msg" style="text-align: center;"></h2>
+</body>
+
+</html>

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Register Customer</title>
+
+
+    <!-- Bootstrap CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+
+<body class="bg-light">
+
+
+    <div class="container mt-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-6">
+
+                <div class="card shadow">
+
+
+                    <!-- Header -->
+
+                    <div class="card-header text-center bg-primary text-white">
+
+                        <h4>
+                            Register Customer
+                        </h4>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+
+                        <!-- Register Form -->
+
+                        <form id="registerForm">
+
+
+                            <!-- User ID -->
+
+                            <div class="mb-3">
+
+                                <label for="userId" class="form-label">
+
+                                    User Id
+
+                                </label>
+
+
+                                <input type="text" class="form-control" id="userId" placeholder="Enter User Id"
+                                    required>
+
+
+                                <div id="userIdMessage" class="mt-1">
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- User Name -->
+
+                            <div class="mb-3">
+
+                                <label for="userName" class="form-label">
+
+                                    User Name
+
+                                </label>
+
+
+                                <input type="text" class="form-control" id="userName" placeholder="Enter User Name"
+                                    required>
+
+
+                                <div id="userNameMessage" class="mt-1">
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- Password -->
+
+                            <div class="mb-3">
+
+                                <label for="password" class="form-label">
+
+                                    Password
+
+                                </label>
+
+
+                                <input type="password" class="form-control" id="password" placeholder="Enter Password"
+                                    required>
+
+                            </div>
+
+
+
+                            <!-- Email -->
+
+                            <div class="mb-3">
+
+                                <label for="email" class="form-label">
+
+                                    Email
+
+                                </label>
+
+
+                                <input type="email" class="form-control" id="email" placeholder="Enter Email" required>
+
+
+                                <div id="emailMessage" class="mt-1">
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- Mobile -->
+
+                            <div class="mb-3">
+
+                                <label for="mobile" class="form-label">
+
+                                    Mobile
+
+                                </label>
+
+
+                                <input type="tel" class="form-control" id="mobile" placeholder="Enter Mobile Number"
+                                    required>
+
+
+                                <div id="mobileMessage" class="mt-1">
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- Register Button -->
+
+                            <button type="submit" id="registerButton" class="btn btn-primary w-100">
+
+                                Register
+
+                            </button>
+
+
+                        </form>
+
+
+                        <!-- Main Message -->
+
+                        <div id="message" class="mt-3">
+                        </div>
+
+
+                        <!-- Login Link -->
+
+                        <div class="text-center mt-3">
+
+                            <span>
+                                Already have an account?
+                            </span>
+
+
+                            <a href="login.html">
+                                Login
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+
+        // ==================================================
+        // Get Elements
+        // ==================================================
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+
+        const registerButton =
+            document.getElementById("registerButton");
+
+
+        const message =
+            document.getElementById("message");
+
+
+        let userIdAvailable = false;
+
+        let userNameAvailable = false;
+
+        let emailAvailable = false;
+
+        let mobileAvailable = false;
+
+
+
+        // ==================================================
+        // User ID Validation
+        // ==================================================
+
+        let userIdTimer;
+
+
+        document
+            .getElementById("userId")
+            .addEventListener("input", function () {
+
+
+                const userId =
+                    this.value.trim();
+
+
+                const userIdMessage =
+                    document.getElementById(
+                        "userIdMessage"
+                    );
+
+
+                clearTimeout(userIdTimer);
+
+
+                userIdAvailable = false;
+
+
+                if (userId === "") {
+
+                    userIdMessage.innerHTML = "";
+
+                    return;
+
+                }
+
+
+                userIdMessage.innerHTML = `
+
+                    <span class="text-secondary">
+                        Checking...
+                    </span>
+
+                `;
+
+
+                userIdTimer = setTimeout(
+                    async function () {
+
+                        try {
+
+                            const response =
+                                await fetch(
+                                    "http://127.0.0.1:4400/checkuserid?UserId="
+                                    + encodeURIComponent(userId)
+                                );
+
+
+                            const result =
+                                await response.json();
+
+
+                            userIdAvailable =
+                                result.available;
+
+
+                            if (result.available) {
+
+                                userIdMessage.innerHTML = `
+
+                                    <span class="text-success">
+                                        ✓ User ID available
+                                    </span>
+
+                                `;
+
+                            }
+                            else {
+
+                                userIdMessage.innerHTML = `
+
+                                    <span class="text-danger">
+                                        ✕ User ID already exists
+                                    </span>
+
+                                `;
+
+                            }
+
+                        }
+                        catch (error) {
+
+                            console.log(error);
+
+                            userIdAvailable = false;
+
+                            userIdMessage.innerHTML = `
+
+                                <span class="text-danger">
+                                    Unable to check User ID
+                                </span>
+
+                            `;
+
+                        }
+
+                    },
+                    500
+                );
+
+            });
+
+
+
+        // ==================================================
+        // User Name Validation
+        // ==================================================
+
+        let userNameTimer;
+
+
+        document
+            .getElementById("userName")
+            .addEventListener("input", function () {
+
+
+                const userName =
+                    this.value.trim();
+
+
+                const userNameMessage =
+                    document.getElementById(
+                        "userNameMessage"
+                    );
+
+
+                clearTimeout(userNameTimer);
+
+
+                userNameAvailable = false;
+
+
+                if (userName === "") {
+
+                    userNameMessage.innerHTML = "";
+
+                    return;
+
+                }
+
+
+                userNameMessage.innerHTML = `
+
+                    <span class="text-secondary">
+                        Checking...
+                    </span>
+
+                `;
+
+
+                userNameTimer = setTimeout(
+                    async function () {
+
+                        try {
+
+                            const response =
+                                await fetch(
+                                    "http://127.0.0.1:4400/checkusername?UserName="
+                                    + encodeURIComponent(userName)
+                                );
+
+
+                            const result =
+                                await response.json();
+
+
+                            userNameAvailable =
+                                result.available;
+
+
+                            if (result.available) {
+
+                                userNameMessage.innerHTML = `
+
+                                    <span class="text-success">
+                                        ✓ User Name available
+                                    </span>
+
+                                `;
+
+                            }
+                            else {
+
+                                userNameMessage.innerHTML = `
+
+                                    <span class="text-danger">
+                                        ✕ User Name already taken
+                                    </span>
+
+                                `;
+
+                            }
+
+                        }
+                        catch (error) {
+
+                            console.log(error);
+
+                            userNameAvailable = false;
+
+                            userNameMessage.innerHTML = `
+
+                                <span class="text-danger">
+                                    Unable to check User Name
+                                </span>
+
+                            `;
+
+                        }
+
+                    },
+                    500
+                );
+
+            });
+
+
+
+        // ==================================================
+        // Email Validation
+        // ==================================================
+
+        let emailTimer;
+
+
+        document
+            .getElementById("email")
+            .addEventListener("input", function () {
+
+
+                const email =
+                    this.value.trim();
+
+
+                const emailMessage =
+                    document.getElementById(
+                        "emailMessage"
+                    );
+
+
+                clearTimeout(emailTimer);
+
+
+                emailAvailable = false;
+
+
+                if (email === "") {
+
+                    emailMessage.innerHTML = "";
+
+                    return;
+
+                }
+
+
+                emailMessage.innerHTML = `
+
+                    <span class="text-secondary">
+                        Checking...
+                    </span>
+
+                `;
+
+
+                emailTimer = setTimeout(
+                    async function () {
+
+                        try {
+
+                            const response =
+                                await fetch(
+                                    "http://127.0.0.1:4400/checkemail?Email="
+                                    + encodeURIComponent(email)
+                                );
+
+
+                            const result =
+                                await response.json();
+
+
+                            emailAvailable =
+                                result.available;
+
+
+                            if (result.available) {
+
+                                emailMessage.innerHTML = `
+
+                                    <span class="text-success">
+                                        ✓ Email available
+                                    </span>
+
+                                `;
+
+                            }
+                            else {
+
+                                emailMessage.innerHTML = `
+
+                                    <span class="text-danger">
+                                        ✕ Email already registered
+                                    </span>
+
+                                `;
+
+                            }
+
+                        }
+                        catch (error) {
+
+                            console.log(error);
+
+                            emailAvailable = false;
+
+                            emailMessage.innerHTML = `
+
+                                <span class="text-danger">
+                                    Unable to check Email
+                                </span>
+
+                            `;
+
+                        }
+
+                    },
+                    500
+                );
+
+            });
+
+
+
+        // ==================================================
+        // Mobile Validation
+        // ==================================================
+
+        let mobileTimer;
+
+
+        document
+            .getElementById("mobile")
+            .addEventListener("input", function () {
+
+
+                const mobile =
+                    this.value.trim();
+
+
+                const mobileMessage =
+                    document.getElementById(
+                        "mobileMessage"
+                    );
+
+
+                clearTimeout(mobileTimer);
+
+
+                mobileAvailable = false;
+
+
+                if (mobile === "") {
+
+                    mobileMessage.innerHTML = "";
+
+                    return;
+
+                }
+
+
+                mobileMessage.innerHTML = `
+
+                    <span class="text-secondary">
+                        Checking...
+                    </span>
+
+                `;
+
+
+                mobileTimer = setTimeout(
+                    async function () {
+
+                        try {
+
+                            const response =
+                                await fetch(
+                                    "http://127.0.0.1:4400/checkmobile?Mobile="
+                                    + encodeURIComponent(mobile)
+                                );
+
+
+                            const result =
+                                await response.json();
+
+
+                            mobileAvailable =
+                                result.available;
+
+
+                            if (result.available) {
+
+                                mobileMessage.innerHTML = `
+
+                                    <span class="text-success">
+                                        ✓ Mobile number available
+                                    </span>
+
+                                `;
+
+                            }
+                            else {
+
+                                mobileMessage.innerHTML = `
+
+                                    <span class="text-danger">
+                                        ✕ Mobile number already registered
+                                    </span>
+
+                                `;
+
+                            }
+
+                        }
+                        catch (error) {
+
+                            console.log(error);
+
+                            mobileAvailable = false;
+
+                            mobileMessage.innerHTML = `
+
+                                <span class="text-danger">
+                                    Unable to check Mobile
+                                </span>
+
+                            `;
+
+                        }
+
+                    },
+                    500
+                );
+
+            });
+
+
+
+        // ==================================================
+        // Register Form Submit
+        // ==================================================
+
+        registerForm.addEventListener(
+            "submit",
+            async function (event) {
+
+
+                event.preventDefault();
+
+
+                if (!userIdAvailable) {
+
+                    message.innerHTML = `
+
+                        <div class="alert alert-danger">
+                            Please enter an available User ID.
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                if (!userNameAvailable) {
+
+                    message.innerHTML = `
+
+                        <div class="alert alert-danger">
+                            Please enter an available User Name.
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                if (!emailAvailable) {
+
+                    message.innerHTML = `
+
+                        <div class="alert alert-danger">
+                            Please enter an available Email.
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                if (!mobileAvailable) {
+
+                    message.innerHTML = `
+
+                        <div class="alert alert-danger">
+                            Please enter an available Mobile number.
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                const customer = {
+
+                    UserId:
+                        document
+                            .getElementById("userId")
+                            .value
+                            .trim(),
+
+
+                    UserName:
+                        document
+                            .getElementById("userName")
+                            .value
+                            .trim(),
+
+
+                    Password:
+                        document
+                            .getElementById("password")
+                            .value,
+
+
+                    Email:
+                        document
+                            .getElementById("email")
+                            .value
+                            .trim(),
+
+
+                    Mobile:
+                        document
+                            .getElementById("mobile")
+                            .value
+                            .trim()
+
+                };
+
+
+                try {
+
+                    registerButton.disabled = true;
+
+                    registerButton.innerText =
+                        "Registering...";
+
+
+                    const response =
+                        await fetch(
+                            "http://127.0.0.1:4400/registercustomer",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/json"
+
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        customer
+                                    )
+
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (response.ok) {
+
+                        message.innerHTML = `
+
+                            <div class="alert alert-success">
+
+                                ${result.message}
+
+                            </div>
+
+                        `;
+
+
+                        registerForm.reset();
+
+
+                        userIdAvailable = false;
+
+                        userNameAvailable = false;
+
+                        emailAvailable = false;
+
+                        mobileAvailable = false;
+
+
+                        document
+                            .getElementById("userIdMessage")
+                            .innerHTML = "";
+
+
+                        document
+                            .getElementById("userNameMessage")
+                            .innerHTML = "";
+
+
+                        document
+                            .getElementById("emailMessage")
+                            .innerHTML = "";
+
+
+                        document
+                            .getElementById("mobileMessage")
+                            .innerHTML = "";
+
+
+                        setTimeout(function () {
+
+                            window.location.href =
+                                "login.html";
+
+                        }, 1500);
+
+                    }
+                    else {
+
+                        message.innerHTML = `
+
+                            <div class="alert alert-danger">
+
+                                ${result.message}
+
+                            </div>
+
+                        `;
+
+
+                        registerButton.disabled = false;
+
+                        registerButton.innerText =
+                            "Register";
+
+                    }
+
+                }
+                catch (error) {
+
+                    console.log(error);
+
+
+                    message.innerHTML = `
+
+                        <div class="alert alert-danger">
+
+                            Unable to connect to server.
+
+                        </div>
+
+                    `;
+
+
+                    registerButton.disabled = false;
+
+                    registerButton.innerText =
+                        "Register";
+
+                }
+
+            });
+
+
+    </script>
+
+
+</body>
+
+</html>
